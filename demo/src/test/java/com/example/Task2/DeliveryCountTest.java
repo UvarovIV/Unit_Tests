@@ -5,7 +5,7 @@ import static org.mockito.Mockito.*;
 import org.junit.Test;
 import org.mockito.Mockito;
 
-import com.example.Classes.Delivery;
+import com.example.сlasses.Delivery;
 
 public class DeliveryCountTest {
     

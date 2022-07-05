@@ -1,4 +1,4 @@
-package com.example.Classes;
+package com.example.сlasses;
 
 public class Pizza {
 

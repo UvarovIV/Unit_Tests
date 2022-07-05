@@ -4,7 +4,7 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import com.example.Classes.*;
+import com.example.сlasses.*;
 
 import java.lang.reflect.Method;
 

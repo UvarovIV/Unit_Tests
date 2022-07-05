@@ -5,7 +5,7 @@ import static org.mockito.Mockito.*;
 import org.junit.Test;
 import org.mockito.Mockito;
 
-import com.example.Classes.*;
+import com.example.сlasses.*;
 
 public class DeliveryExceptionTest {
     
