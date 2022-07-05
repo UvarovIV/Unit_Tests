@@ -4,7 +4,8 @@ import static org.mockito.Mockito.*;
 
 import org.junit.Test;
 import org.mockito.Mockito;
-import com.example.Task1.Delivery;
+
+import com.example.Classes.Delivery;
 
 public class DeliveryCountTest {
     

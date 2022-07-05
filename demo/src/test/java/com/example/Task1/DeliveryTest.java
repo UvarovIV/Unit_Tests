@@ -3,6 +3,9 @@ package com.example.Task1;
 import static org.junit.Assert.*;
 import org.junit.Test;
 
+import com.example.Classes.Delivery;
+import com.example.Classes.Pizza;
+
 public class DeliveryTest {
 
     @Test

@@ -3,8 +3,10 @@ package com.example.Task4;
 import static org.junit.Assert.*;
 
 import org.junit.Test;
+
+import com.example.Classes.*;
+
 import java.lang.reflect.Method;
-import com.example.Task1.*;
 
 public class DeliveryPrivateMethodsTest {
     @Test

@@ -1,4 +1,4 @@
-package com.example.Task1;
+package com.example.Classes;
 
 public class Delivery {
 
