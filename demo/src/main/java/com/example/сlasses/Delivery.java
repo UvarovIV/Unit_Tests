@@ -11,6 +11,8 @@ public class Delivery {
         return true;
     }
 
+    public Delivery() {}
+
     public Delivery(String adress, Pizza pizza) {
         this.adress = adress;
         this.pizza = pizza;
@@ -21,14 +23,14 @@ public class Delivery {
         return isOrdered;
     }
 
-    public String[] getInformationAboutPizza(){
+    public String[] getInformationAboutPizza() {
         information[0] = pizza.getTitle();
         information[1] = pizza.getSize();
         information[2] = pizza.getPrice();
         return information;
     }
 
-    public void arrangeDelivery(){
+    public void arrangeDelivery() {
         if (!isOrdered) {
             System.out.println("Доставка оформлена на адрес: " + adress);
             isOrdered = true;

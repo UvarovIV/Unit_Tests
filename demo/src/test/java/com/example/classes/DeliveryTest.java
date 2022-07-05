@@ -1,4 +1,4 @@
-package com.example.Task1;
+package com.example.classes;
 
 import static org.junit.Assert.*;
 import org.junit.Test;
@@ -9,7 +9,7 @@ import com.example.сlasses.Pizza;
 public class DeliveryTest {
 
     @Test
-    public void shouldAnswerWithTrue(){
+    public void shouldAnswerWithTrue() {
         Pizza pizza = new Pizza("4 сыра", "big", "450");
         Delivery delivery = new Delivery("Leningradskaya 115, ", pizza);
         delivery.arrangeDelivery();
@@ -17,14 +17,14 @@ public class DeliveryTest {
     }
 
     @Test
-    public void shouldPizzaNotNull(){
+    public void shouldPizzaNotNull() {
         Pizza pizza = new Pizza("4 сыра", "big", "450");
         Delivery delivery = new Delivery("Leningradskaya 115, ", pizza);
         assertNotNull(delivery);
     }
 
     @Test
-    public void shouldInformationIsRight(){
+    public void shouldInformationIsRight() {
         Pizza pizza = new Pizza("4 сыра", "big", "450");
         Delivery delivery = new Delivery("Leningradskaya 115, ", pizza);
         assertEquals( "4 сыра", delivery.getInformationAboutPizza()[0]);
