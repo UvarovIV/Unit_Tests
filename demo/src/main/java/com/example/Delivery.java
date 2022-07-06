@@ -1,4 +1,4 @@
-package com.example.сlasses;
+package com.example;
 
 public class Delivery {
 
