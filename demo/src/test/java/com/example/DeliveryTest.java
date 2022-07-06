@@ -46,10 +46,12 @@ public class DeliveryTest {
     }
 
     @Test
-    public void shouldCallOneTime() {
+    public void shouldCallTwoTime() {
         Delivery delivery = spy(Delivery.class);
+        delivery.setAdress("Leningradskaya 115");
         delivery.arrangeDelivery();
-        verify(delivery, times(1)).arrangeDelivery();
+        delivery.arrangeDelivery();
+        verify(delivery, times(2)).arrangeDelivery();
     }
 
     @Test(expected = NullPointerException.class)

@@ -37,5 +37,9 @@ public class Delivery {
         } else
             System.out.println("Доставка уже была оформлена ранее");
     }
+
+    public void setAdress(String adress) {
+        this.adress = adress;
+    }
     
 }
