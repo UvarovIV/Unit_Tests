@@ -1,7 +1,7 @@
 package com.example;
 
 public class Delivery {
-
+ 
     private String adress;
     private Pizza pizza;
     private boolean isOrdered = false;
@@ -9,26 +9,26 @@ public class Delivery {
 
     private static boolean returnTrue() {
         return true;
-    }
+    } 
 
     public Delivery() {}
 
     public Delivery(String adress, Pizza pizza) {
         this.adress = adress;
         this.pizza = pizza;
-    }
+    } 
 
     public boolean isOrdered() throws NullPointerException {
         if (pizza == null) throw new NullPointerException();
         return isOrdered;
-    } 
+    }  
 
     public String[] getInformationAboutPizza() {
         information[0] = pizza.getTitle();
         information[1] = pizza.getSize();
         information[2] = pizza.getPrice();
         return information;
-    }
+    } 
 
     public void arrangeDelivery() {
         if (!isOrdered) {
@@ -36,10 +36,10 @@ public class Delivery {
             isOrdered = true;
         } else
             System.out.println("Доставка уже была оформлена ранее");
-    }
+    } 
 
     public void setAdress(String adress) {
         this.adress = adress;
-    }
+    } 
     
 }
