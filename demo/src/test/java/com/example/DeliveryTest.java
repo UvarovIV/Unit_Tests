@@ -43,7 +43,7 @@ public class DeliveryTest {
         assertEquals("4 сыра", delivery.getInformationAboutPizza()[0]);
         assertEquals("big", delivery.getInformationAboutPizza()[1]);
         assertEquals("450", delivery.getInformationAboutPizza()[2]);
-    }
+    } 
 
     @Test
     public void shouldCallTwoTime() {

@@ -20,7 +20,7 @@ public class Pizza {
 
     public void setTitle(String title) {
         this.title = title;
-    }
+    } 
 
     public String getSize() {
         return size;

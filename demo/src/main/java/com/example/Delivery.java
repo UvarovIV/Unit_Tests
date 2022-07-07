@@ -21,7 +21,7 @@ public class Delivery {
     public boolean isOrdered() throws NullPointerException {
         if (pizza == null) throw new NullPointerException();
         return isOrdered;
-    }
+    } 
 
     public String[] getInformationAboutPizza() {
         information[0] = pizza.getTitle();
