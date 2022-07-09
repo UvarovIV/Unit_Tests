@@ -1,5 +1,6 @@
 package com.example;
 
+
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
  
@@ -67,6 +68,6 @@ public class DeliveryTest {
           Delivery delivery = new Delivery("Leningradskaya 115, ", pizza);
           Method method = Delivery.class.getDeclaredMethod("returnTrue");
           method.setAccessible(true);
-          assertTrue((boolean)method.invoke(delivery));
+          assertTrue((boolean)method.invoke(delivery)); 
     } 
 }
