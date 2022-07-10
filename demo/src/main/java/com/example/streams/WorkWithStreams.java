@@ -20,9 +20,9 @@ public class WorkWithStreams {
         }
     }
 
-    public static String getAverage(List<Integer> list) {
+    public static double getAverage(List<Integer> list) {
 
-        Double average = list
+        double average = list
             .stream()
             .limit(7)
             .map(x -> check(x))
@@ -30,7 +30,7 @@ public class WorkWithStreams {
             .average()
             .getAsDouble();
 
-        return average.toString();
+        return average;
     }
 
     public static Map<String, Integer> setToMap(Set<String> set) {
