@@ -26,8 +26,7 @@ public class WorkWithStreamsTest {
             "gggggggggg",
             "iiiiiiiiiiiiiiiiiiii",
             "kkkkkkk");
-        Integer i = 2;
-        assertEquals(i, WorkWithStreams.setToMap(set).get("ee"));
+        assertEquals((Integer) 2, WorkWithStreams.setToMap(set).get("ee"));
     }
 
     @Test
@@ -48,7 +47,6 @@ public class WorkWithStreamsTest {
 
     @Test
     public void shouldNotNull() {
-        Delivery delivery = null;
-        assertNotNull(WorkWithStreams.createIfNull(delivery));
+        assertNotNull(WorkWithStreams.createIfNull(new Delivery()));
     }
 }
