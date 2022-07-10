@@ -1,6 +1,5 @@
 package com.example;
 
-
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
  
