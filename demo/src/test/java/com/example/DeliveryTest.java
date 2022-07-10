@@ -10,46 +10,46 @@ import java.lang.reflect.Method;
 
 public class DeliveryTest {
 
+    final String[] testInformation = {"4 сыра", "big", "450"}; 
+    final Pizza testPizza = new Pizza(testInformation[0], testInformation[1], testInformation[2]);
+    final String adress = "Leningradskaya 115";
+    final Delivery testDelivery = new Delivery(adress, testPizza);
+
     @Test
     public void shouldAnswerWithTrue() {
-        Pizza pizza = new Pizza("4 сыра", "big", "450");
-        Delivery delivery = new Delivery("Leningradskaya 115, ", pizza);
-        delivery.arrangeDelivery();
-        assertTrue(delivery.isOrdered());
+        testDelivery.arrangeDelivery();
+        assertTrue(testDelivery.isOrdered());
     } 
 
     @Test
     public void shouldPizzaNotNull() {
-        Pizza pizza = new Pizza("4 сыра", "big", "450");
-        Delivery delivery = new Delivery("Leningradskaya 115", pizza);
-        assertNotNull(delivery);
+        assertNotNull(testDelivery);
+    } 
+
+    private void equalInformation(Delivery delivery) {
+        for (int i = 0; i < testInformation.length; i++)
+            assertEquals(testInformation[i], delivery.getInformationAboutPizza()[i]);
     } 
 
     @Test
     public void shouldInformationIsRight() {
-        Pizza pizza = new Pizza("4 сыра", "big", "450");
-        Delivery delivery = new Delivery("Leningradskaya 115", pizza);
-        assertEquals("4 сыра", delivery.getInformationAboutPizza()[0]);
-        assertEquals("big", delivery.getInformationAboutPizza()[1]);
-        assertEquals("450", delivery.getInformationAboutPizza()[2]);
-    } 
+        equalInformation(testDelivery);
+    }
 
     @Test
-    public void getHumanNameTest() {
+    public void shouldInformationIsRight2() {
         Pizza pizza = mock(Pizza.class);
-        doReturn("4 сыра").when(pizza).getTitle();
-        doReturn("big").when(pizza).getSize();
-        doReturn("450").when(pizza).getPrice();
-        Delivery delivery = new Delivery("Leningradskaya 115", pizza);
-        assertEquals("4 сыра", delivery.getInformationAboutPizza()[0]);
-        assertEquals("big", delivery.getInformationAboutPizza()[1]);
-        assertEquals("450", delivery.getInformationAboutPizza()[2]);
+        doReturn(testInformation[0]).when(pizza).getTitle();
+        doReturn(testInformation[1]).when(pizza).getSize();
+        doReturn(testInformation[2]).when(pizza).getPrice();
+        Delivery delivery = new Delivery(adress, pizza);
+        equalInformation(delivery);
     }  
 
     @Test
     public void shouldCallTwoTime() {
         Delivery delivery = spy(Delivery.class);
-        delivery.setAdress("Leningradskaya 115");
+        delivery.setAdress(adress);
         delivery.arrangeDelivery();
         delivery.arrangeDelivery();
         verify(delivery, times(2)).arrangeDelivery();
@@ -64,10 +64,8 @@ public class DeliveryTest {
 
     @Test
     public void checkPrivateMethod() throws Exception {
-          Pizza pizza = new Pizza("4 сыра", "big", "450");
-          Delivery delivery = new Delivery("Leningradskaya 115, ", pizza);
-          Method method = Delivery.class.getDeclaredMethod("returnTrue");
-          method.setAccessible(true);
-          assertTrue((boolean)method.invoke(delivery)); 
+        Method method = Delivery.class.getDeclaredMethod("returnTrue");
+        method.setAccessible(true);
+        assertTrue((boolean)method.invoke(testDelivery));
     } 
 }
