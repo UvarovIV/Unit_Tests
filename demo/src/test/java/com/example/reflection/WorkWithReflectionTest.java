@@ -24,9 +24,8 @@ public class WorkWithReflectionTest {
         Method method = wwrf.getClass().getDeclaredMethod("randomNumber");
         method.setAccessible(true);
         System.out.println(method.invoke(wwrf));
-        Arrays.stream(wwrf.getClass().getDeclaredMethods()).forEach(
+        Arrays.stream(wwrf.getClass().getSuperclass().getDeclaredMethods()).forEach(
             f -> {
-                f.setAccessible(true);
                 System.out.println(f.getName());
             }
         );
