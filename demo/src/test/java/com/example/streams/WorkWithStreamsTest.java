@@ -3,8 +3,10 @@ package com.example.streams;
 import static org.junit.Assert.*;
 
 import org.junit.Test;
+
+import com.example.tests.Delivery;
+
 import java.util.*;
-import com.example.Delivery;
 
 public class WorkWithStreamsTest {
     @Test
