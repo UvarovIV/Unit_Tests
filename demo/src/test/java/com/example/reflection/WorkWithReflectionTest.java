@@ -7,8 +7,8 @@ import org.junit.Test;
 
 public class WorkWithReflectionTest {
 
-    final WorkWithReflection workWithReflection = new WorkWithReflection("private", "public", "protected");
-    final Class<?> classForReflection = workWithReflection.getClass();
+    private static final WorkWithReflection workWithReflection = new WorkWithReflection("private", "public", "protected");
+    private static final Class<?> classForReflection = workWithReflection.getClass();
 
     @Test
     public void workWithFields() throws NoSuchFieldException, SecurityException, IllegalArgumentException, IllegalAccessException {
