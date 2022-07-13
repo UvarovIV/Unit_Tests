@@ -54,8 +54,8 @@ public class ThreadsTest {
 
         Store store = new Store();
 
-        Producer producer = new Producer(store);
-        Consumer consumer = new Consumer(store);
+        Thread producer = new Thread(() -> store.add());
+        Thread consumer = new Thread(() -> store.get());
 
         new Thread(producer).start();
         new Thread(consumer).start();
@@ -82,14 +82,14 @@ public class ThreadsTest {
         });
         thread.setDaemon(true);
         thread.start();
-        synchronized(lock) {
+        synchronized (lock) {
             lock.wait();
         }
     }
 
     @Test
     public void testThreads6() throws InterruptedException {
-        
+
         Thread additionalThread = new Thread(() -> {
             while (!Thread.currentThread().isInterrupted()) {
                 try {
@@ -100,9 +100,9 @@ public class ThreadsTest {
                 }
             }
         });
-         
+
         additionalThread.start();
-        Thread.sleep(5000);   
+        Thread.sleep(5000);
         additionalThread.interrupt();
         System.out.println("Главный поток завершён");
     }
