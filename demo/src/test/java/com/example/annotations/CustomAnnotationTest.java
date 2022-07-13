@@ -29,25 +29,29 @@ public class CustomAnnotationTest {
     }
 
     private Map<Method, Integer> getCommands() {
-        Map<Method, Integer> map = Arrays.stream(this.getClass().getDeclaredMethods())
+        return Arrays.stream(this.getClass().getDeclaredMethods())
                 .filter(m -> m.isAnnotationPresent(CustomAnnotation.class)).collect(Collectors.toMap(
                         Function.identity(), value -> value.getAnnotation(CustomAnnotation.class).queueNumber()));
-        return map;
     }
 
     private void useMethods(Method method) throws IllegalAccessException, IllegalArgumentException, InvocationTargetException {
         Map<Method, Integer> map = getCommands();
-        map.entrySet()
+        int currentNumber = map.get(method);
+        
+        map = map
+            .entrySet()
             .stream()
-            .filter(m -> m.getValue() < method.getAnnotation(CustomAnnotation.class).queueNumber())
-            .forEach(m -> {
+            .sorted(Map.Entry.comparingByValue())
+            .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (el1, el2) -> el1, LinkedHashMap::new));
+        
+        map.entrySet().forEach(x -> {
+            if (x.getValue() <= currentNumber)
                 try {
-                    m.getKey().invoke(this);
-                } catch (Exception e) {
+                    x.getKey().invoke(this);
+                } catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
                     e.printStackTrace();
                 }
-            });
-        method.invoke(this);
+        });
     }
 
     @Test
