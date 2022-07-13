@@ -15,37 +15,38 @@ public class ThreadsTest {
     @Test
     public void testThreads2() throws InterruptedException {
 
-        Thread firstThread = new Thread(() -> {
-            for (int i = 0; i < 15; i++)
-                System.out.println(i);
+        Thread thread = new Thread(() -> {
+            try {
+                Thread.sleep(5000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            System.out.println("Побочный поток");
         });
 
-        Thread secondThread = new Thread(() -> {
-            for (int i = 0; i < 15; i++)
-                System.out.println("Hello");
-        });
-
-        secondThread.start();
-        secondThread.join();
-        firstThread.start();
+        thread.start();
+        thread.join();
+        System.out.println("Главный поток завершён");
     }
 
     @Test
-    public void testThreads3() {
+    public void testThreads3() throws InterruptedException {
 
         Thread additionalThread = new Thread(() -> {
-            while (!Thread.currentThread().isInterrupted())
-                System.out.println("additional");
+            while (true) {
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                System.out.println("ddd");
+            }
         });
 
-        Thread mainThread = new Thread(() -> {
-            for (int i = 0; i < 15; i++)
-                System.out.println("main");
-            additionalThread.interrupt();
-        });
-
+        additionalThread.setDaemon(true);
         additionalThread.start();
-        mainThread.start();
+        Thread.sleep(2100);
+        System.out.println("WWW");
     }
 
     @Test
@@ -58,27 +59,19 @@ public class ThreadsTest {
 
         new Thread(producer).start();
         new Thread(consumer).start();
-        
-    }
 
-    private void checkTime(Object lock, long startTime) throws InterruptedException {
-        long currentTime = System.currentTimeMillis() - startTime;
-        if (currentTime >= 5000)
-            lock.wait();
     }
 
     private void lambdaBody(Object lock) throws InterruptedException {
-        long startTime = System.currentTimeMillis();
+        Thread.sleep(5000);
         synchronized (lock) {
-            while (true){
-                checkTime(lock, startTime);
-                System.out.println("Цикл выполнился");
-            }    
+            System.out.println("Цикл выполнился");
+            lock.notify();
         }
     }
 
     @Test
-    public void testThreads5() {
+    public void testThreads5() throws InterruptedException {
         Object lock = new Object();
         Thread thread = new Thread(() -> {
             try {
@@ -89,22 +82,28 @@ public class ThreadsTest {
         });
         thread.setDaemon(true);
         thread.start();
+        synchronized(lock) {
+            lock.wait();
+        }
     }
-
 
     @Test
     public void testThreads6() throws InterruptedException {
-        Object lock = new Object();
-        Thread thread = new Thread(() -> {
-            synchronized (lock) {
-                while (true)
-                    System.out.println("Цикл сработал");
+        
+        Thread sideThread = new Thread(() -> {
+            while (!Thread.currentThread().isInterrupted()) {
+                try {
+                    Thread.sleep(999);
+                    System.out.println("Hello");
+                } catch (InterruptedException e) {
+                    System.out.println();
+                }
             }
         });
-        thread.start();
-        synchronized (lock) {
-            long startTime = System.currentTimeMillis();
-            checkTime(lock, startTime);
-        }
+         
+        sideThread.start();
+        Thread.sleep(5000);   
+        sideThread.interrupt();
+        System.out.println("Главный поток завершён");
     }
 }

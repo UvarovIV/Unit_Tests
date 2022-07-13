@@ -2,7 +2,7 @@ package com.example.threads;
 
 public class Consumer implements Runnable {
 
-    Store store;
+    private Store store;
 
     public Consumer(Store store) {
         this.store = store;

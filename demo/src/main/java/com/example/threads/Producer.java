@@ -2,7 +2,7 @@ package com.example.threads;
 
 public class Producer implements Runnable {
 
-    Store store;
+    private Store store;
 
     public Producer(Store store) {
         this.store = store;
