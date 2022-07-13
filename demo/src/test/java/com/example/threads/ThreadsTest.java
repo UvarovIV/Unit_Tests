@@ -90,7 +90,7 @@ public class ThreadsTest {
     @Test
     public void testThreads6() throws InterruptedException {
         
-        Thread sideThread = new Thread(() -> {
+        Thread additionalThread = new Thread(() -> {
             while (!Thread.currentThread().isInterrupted()) {
                 try {
                     Thread.sleep(999);
@@ -101,9 +101,9 @@ public class ThreadsTest {
             }
         });
          
-        sideThread.start();
+        additionalThread.start();
         Thread.sleep(5000);   
-        sideThread.interrupt();
+        additionalThread.interrupt();
         System.out.println("Главный поток завершён");
     }
 }
