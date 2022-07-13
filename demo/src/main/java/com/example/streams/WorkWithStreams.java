@@ -4,7 +4,7 @@ import java.util.*;
 import java.util.function.Function;
 import java.util.stream.*;
 
-import com.example.Delivery;
+import com.example.tests.Delivery;
 
 public class WorkWithStreams {
 
