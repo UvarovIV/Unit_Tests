@@ -34,7 +34,7 @@ public class CustomAnnotationTest {
                         Function.identity(), value -> value.getAnnotation(CustomAnnotation.class).queueNumber()));
     }
 
-    private void useMethods(Method method) throws IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+    private void useMethods(Method method) {
         Map<Method, Integer> map = getCommands();
         int currentNumber = map.get(method);
 
