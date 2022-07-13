@@ -37,14 +37,8 @@ public class CustomAnnotationTest {
     private void useMethods(Method method) throws IllegalAccessException, IllegalArgumentException, InvocationTargetException {
         Map<Method, Integer> map = getCommands();
         int currentNumber = map.get(method);
-        
-        map = map
-            .entrySet()
-            .stream()
-            .sorted(Map.Entry.comparingByValue())
-            .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (el1, el2) -> el1, LinkedHashMap::new));
-        
-        map.entrySet().forEach(x -> {
+
+        map.entrySet().stream().sorted(Map.Entry.comparingByValue()).forEach(x -> {
             if (x.getValue() <= currentNumber)
                 try {
                     x.getKey().invoke(this);
@@ -61,6 +55,6 @@ public class CustomAnnotationTest {
 
     @Test
     public void useMethodsTest() throws IllegalAccessException, InvocationTargetException, NoSuchMethodException {
-        useMethods(this.getClass().getDeclaredMethod("testMethod4"));
+        useMethods(this.getClass().getDeclaredMethod("testMethod3"));
     }
 }
